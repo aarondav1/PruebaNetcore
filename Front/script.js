@@ -30,6 +30,18 @@ function addItem(product) {
   updateTable();
 }
 
+function removeItem(productId) {
+  const itemIndex = items.findIndex((i) => i.product.id === productId);
+  if (itemIndex > -1) {
+    const item = items[itemIndex];
+    item.quantity--;
+    if (item.quantity === 0) {
+      items.splice(itemIndex, 1);
+    }
+  }
+  updateTable();
+}
+
 function updateTable() {
   itemsTable.innerHTML = `
     <thead>
@@ -81,8 +93,6 @@ addButton.addEventListener("click", () => {
     addItem(product);
   }
 });
-
-
 
 
 getProducts();
